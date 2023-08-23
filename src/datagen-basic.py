@@ -209,7 +209,7 @@ st.write(preview_df)
 st.line_chart(preview_df.set_index('timestamp'))
 
 
-
+table_name = st.sidebar.text_input("SQL Table Name", "table")
 
 # Regenerate based on user input
 st.sidebar.header("Download Configuration")
@@ -217,3 +217,28 @@ st.sidebar.header("Download Configuration")
 if st.sidebar.button('Regenerate and Download Data'):
     #final_df = generate_data(final_row_count)
     st.sidebar.markdown(to_csv_download_link(preview_df), unsafe_allow_html=True)
+
+    # Replace this with your actual DataFrame
+    df = preview_df  # For example
+
+    # Generate the SQL string to create the table based on DataFrame columns and their data types
+    create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} (\n"
+    for column in df.columns:
+        data_type = "VARCHAR(MAX)" if df[column].dtype == object else "FLOAT"  # Adjust data types as needed
+        create_table_query += f"    {column} {data_type},\n"
+    create_table_query = create_table_query.rstrip(",\n") + "\n)"
+
+    # Generate the SQL insert query string
+    insert_query = f"INSERT INTO {table_name} ({', '.join(df.columns)}) VALUES "
+
+    # Generate the VALUES portion of the query
+    values = []
+    for index, row in df.iterrows():
+        row_values = [f"'{value}'" if isinstance(value, str) else str(value) for value in row]
+        values.append("(" + ", ".join(row_values) + ")")
+
+    insert_query += ", ".join(values)
+
+    # Print or use the create_table_query and insert_query as needed
+    create_table_query
+    insert_query
