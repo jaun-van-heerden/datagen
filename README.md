@@ -69,3 +69,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 This app was developed by Jaun van Heerden. Feel free to contribute, provide feedback, or report issues.
 
+## TODO
+- Set date range + granularity
+- PID follow trace
+- boolean type
+- multiple entities
