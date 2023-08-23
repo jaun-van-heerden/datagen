@@ -271,10 +271,15 @@ elif choice == "Time Span":
 
 
 
+
+
+
+
 preview_rows = st.sidebar.slider("Select number of preview rows", 10, 200, 50)
 preview_df = generate_data(preview_rows)
 st.subheader("Preview Data:")
 st.write(preview_df)
+
 st.line_chart(preview_df.set_index('timestamp'))
 
 
