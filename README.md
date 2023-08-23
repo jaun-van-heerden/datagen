@@ -1,5 +1,6 @@
 ![2023-08-23_20-53-25](https://github.com/jaun-van-heerden/datagen/assets/39254276/bc2bced9-4f1d-4c96-aca7-511ac3279557)
-```markdown
+
+
 # DataGen by Jaun van Heerden
 
 This Streamlit app, named `datagen-basic.py`, is designed to generate synthetic time-series data with various algorithms. You can customize the parameters of each series and combine them to create unique datasets for testing and analysis.
