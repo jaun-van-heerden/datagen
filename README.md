@@ -1,5 +1,4 @@
-![2023-08-23_20-53-25](https://github.com/jaun-van-heerden/datagen/assets/39254276/bc2bced9-4f1d-4c96-aca7-511ac3279557)Sure, here's an example of how your GitHub README markdown file could look like to explain how to set up and run your Streamlit app named `datagen-basic.py`:
-
+![2023-08-23_20-53-25](https://github.com/jaun-van-heerden/datagen/assets/39254276/bc2bced9-4f1d-4c96-aca7-511ac3279557)
 ```markdown
 # DataGen by Jaun van Heerden
 
