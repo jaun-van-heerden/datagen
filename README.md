@@ -69,7 +69,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 This app was developed by Jaun van Heerden. Feel free to contribute, provide feedback, or report issues.
 
-```
-```
-
-Remember to replace the example placeholders and descriptions with actual information relevant to your project.
