@@ -3,9 +3,10 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import time
+from datetime import datetime, timedelta
 
 # Time increments options
-TIME_INCREMENTS = ["Seconds", "Minutes", "Hours", "Days"]
+TIME_INCREMENTS = ["Milliseconds", "Seconds", "Minutes", "Hours", "Days"]
 
 COMBINATION_OPS = ["Add", "Subtract", "Multiply", "Divide", "Exponent"]
 
@@ -177,30 +178,30 @@ def data_bounds():
 
 
 def time_scalar():
-
-    with st.sidebar:
-        time_unit = st.select_slider("Unit of Time", [
-                    "ns",
-                    "ms",
-                    "s",
-                    "m",
-                    "h",
-                    "d",
-                    "w",
-                    "M",
-                    "Y"
-                ])
+    ...
+    # with st.sidebar:
+    #     time_unit = st.select_slider("Unit of Time", [
+    #                 "ns",
+    #                 "ms",
+    #                 "s",
+    #                 "m",
+    #                 "h",
+    #                 "d",
+    #                 "w",
+    #                 "M",
+    #                 "Y"
+    #             ])
         
-        time_number = st.number_input('Set Number', 
-                                            min_value=0,
-                                            help=f'Select a number of {time_unit}')
+    #     time_number = st.number_input('Set Number', 
+    #                                         min_value=0,
+    #                                         help=f'Select a number of {time_unit}')
         
         
-        f'**{time_number} {time_unit}**'
+    #     f'**{time_number} {time_unit}**'
 
-        st.divider()
+    #     st.divider()
 
-    data_bounds()
+    # data_bounds()
     
 
     # df = pd.DataFrame(columns=['Unit of Time', 'Number'])
@@ -244,22 +245,56 @@ def time_scalar():
 
     # '...and now we\'re done!'
 
-def time_span():
-    'time span'
-
 
 
 #st.toast('Welcome - DATA GENeration time', icon='📈')
 
   #st.sidebar.metric("My metric", 32, 2)
 
+
+def time_span():
+    "to be added"
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        date_from = st.date_input("From")
+    with col2:
+        date_to = st.date_input("To")
+    with col3:
+        number = st.number_input("Number", min_value=1, value=10)
+    with col4:
+        increment = st.selectbox("Increment", TIME_INCREMENTS, index=3)
+
+
+    match increment:
+        case "Milliseconds":
+            freq = timedelta(milliseconds=number)
+        case "Seconds":
+            freq = timedelta(seconds=number)
+        case "Minutes":
+            freq = timedelta(minutes=number)
+        case "Hours":
+            freq = timedelta(hours=number)
+        case "Days":
+            freq = timedelta(days=number)
+        case _ :
+            freq = timedelta(seconds=number)
+
+    df = pd.DataFrame({"Timestamp": pd.date_range(date_from, date_to, freq=freq)})
+    df
+
+
+
+def hierarchical():
+    "to be added"
+
+
+# sidebar stuff
+
 with st.sidebar:
-    # Preview
     st.header("Configuration")
-    choice = st.selectbox("Data Type", ["Time Scalar", "Time Span"])
-
-
-st.json(st.session_state.series)
+    choice = st.selectbox("Data Type", ["Time Scalar", "Time Span", "Hierarchical"], index=1)
 
 
 if choice == "Time Scalar":
@@ -268,6 +303,8 @@ if choice == "Time Scalar":
 elif choice == "Time Span":
     time_span()
 
+elif choice == "Hierarchical":
+    hierarchical()
 
 
 
@@ -275,19 +312,21 @@ elif choice == "Time Span":
 
 
 
-preview_rows = st.sidebar.slider("Select number of preview rows", 10, 200, 50)
-preview_df = generate_data(preview_rows)
-st.subheader("Preview Data:")
-st.write(preview_df)
 
-st.line_chart(preview_df.set_index('timestamp'))
+# preview_rows = st.sidebar.slider("Select number of preview rows", 10, 200, 50)
+# preview_df = generate_data(preview_rows)
+# st.subheader("Preview Data:")
+# st.write(preview_df)
+
+# st.line_chart(preview_df.set_index('timestamp'))
 
 
 
 
-# Regenerate based on user input
-st.sidebar.header("Download Configuration")
-final_row_count = st.sidebar.slider("Select number of rows for download", 10, 10000, 1000)
-if st.sidebar.button('Regenerate and Download Data'):
-    final_df = generate_data(final_row_count)
-    st.sidebar.markdown(to_csv_download_link(final_df), unsafe_allow_html=True)
+# # Regenerate based on user input
+# st.sidebar.header("Download Configuration")
+# final_row_count = st.sidebar.slider("Select number of rows for download", 10, 10000, 1000)
+# if st.sidebar.button('Regenerate and Download Data'):
+#     final_df = generate_data(final_row_count)
+#     st.sidebar.markdown(to_csv_download_link(final_df), unsafe_allow_html=True)
+
