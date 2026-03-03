@@ -14,7 +14,6 @@ class ColumnSpec:
     name: str
     generator: BaseGenerator
     transformations: list[BaseTransformation] = field(default_factory=list)
-    depends_on: list[str] = field(default_factory=list)
 
 
 @dataclass

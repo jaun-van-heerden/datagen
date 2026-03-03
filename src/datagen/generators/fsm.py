@@ -98,6 +98,6 @@ class FiniteStateMachineGenerator(BaseGenerator):
             trans = self.transitions[current]
             targets = list(trans.keys())
             probs = [trans[t] for t in targets]
-            current = targets[rng.choice(len(targets), p=probs)]
+            current = rng.choice(targets, p=probs)
 
         return pd.Series(result, dtype="category")
