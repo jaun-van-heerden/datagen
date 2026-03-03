@@ -9,6 +9,7 @@ from .numeric import (
 from .boolean import RandomBooleanGenerator, WeightedBooleanGenerator
 from .text import CategoryGenerator, EmailGenerator, LoremIpsumGenerator, NameGenerator, UUIDGenerator
 from .datetime_gen import DateRangeGenerator, RandomDateGenerator
+from .fsm import FiniteStateMachineGenerator
 
 __all__ = [
     "BaseGenerator",
@@ -26,4 +27,5 @@ __all__ = [
     "UUIDGenerator",
     "DateRangeGenerator",
     "RandomDateGenerator",
+    "FiniteStateMachineGenerator",
 ]
