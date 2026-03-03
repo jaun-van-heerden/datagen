@@ -19,14 +19,18 @@ Quick-start example::
     print(df.head())
 """
 
-from .pipeline import Pipeline, ColumnSpec
+from .pipeline import Pipeline, ColumnSpec, DAGPipeline
 from .registry import GENERATOR_REGISTRY, TRANSFORMATION_REGISTRY, get_generator, get_transformation
+from .calculations import CalculationModel, Calculation
 
 __all__ = [
     "Pipeline",
     "ColumnSpec",
+    "DAGPipeline",
     "GENERATOR_REGISTRY",
     "TRANSFORMATION_REGISTRY",
     "get_generator",
     "get_transformation",
+    "CalculationModel",
+    "Calculation",
 ]

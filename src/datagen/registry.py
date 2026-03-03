@@ -10,6 +10,7 @@ from .generators import (
     ConstantGenerator,
     DateRangeGenerator,
     EmailGenerator,
+    FiniteStateMachineGenerator,
     LoremIpsumGenerator,
     NameGenerator,
     NormalGenerator,
